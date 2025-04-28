@@ -1,0 +1,211 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Vendors Inventory Data API",
+        "description": "This is the API used by Kaboom Orbital to track vendor's inventory levels.",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://trainingjoeldavenport.api.mashery.com"
+        }
+    ],
+    "tags": [
+        {
+            "name": "inv"
+        }
+    ],
+    "paths": {
+        "/inventory": {
+            "get": {
+                "tags": [
+                    "inv"
+                ],
+                "summary": "INT-01 [MySQL>API] Inventory Data",
+                "description": "This EndPoint retrieves data from the inventory database system.\n",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "headers": {
+                            "X-Page-Wrapper": {
+                                "description": "String identifying the element in which the results are wrapped.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Link": {
+                                "description": "URL which can be used to retrieve the next page of results.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/invResponseList"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "413": {
+                        "$ref": "#/components/responses/413"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "522": {
+                        "$ref": "#/components/responses/522"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/default"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "_empty_": {
+                "type": "object",
+                "properties": {
+                    "Item_Description": {
+                        "type": "string"
+                    },
+                    "Item_ID": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "Item_Name": {
+                        "type": "string"
+                    },
+                    "Item_Quantity": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "Item_Unit_Price": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "invResponseList": {
+                "type": "object",
+                "properties": {
+                    "_empty_": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "400": {
+                "description": "Bad Request - There are miscellaneous errors with the request, for example, mismatches between the request and what is allowed for the operation.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "401": {
+                "description": "Unauthorized or 403 Forbidden - Authentication errors.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "404": {
+                "description": "Not Found - Invalid URL path.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "413": {
+                "description": "Request Entity Too Large - The request data was too large. This is based on the SOA Input Size quota.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Internal Server Error - This generic error message appears when an unexpected condition was encountered and a more specific message is not suitable.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "503": {
+                "description": "Service Unavailable - The caller has hit a throttle or the request was rejected because the Atom is starting or stopping.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "522": {
+                "description": "Connection Timed Out - This message is returned to the client when the SOA Worker Maximum Execution Time has been exceeded.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "default": {
+                "description": "Unidentified Exception",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "name": "api_orbital_key",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "api_key": []
+        }
+    ]
+}
