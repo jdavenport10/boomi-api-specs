@@ -107,7 +107,7 @@
                     "_empty_": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/"
+                            "$ref": "#/components/schemas"
                         }
                     }
                 }
