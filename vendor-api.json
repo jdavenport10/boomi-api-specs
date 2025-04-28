@@ -78,7 +78,7 @@
     },
     "components": {
         "schemas": {
-            "_empty_": {
+            "InvResponse": {
                 "type": "object",
                 "properties": {
                     "Item_Description": {
@@ -107,7 +107,7 @@
                     "_empty_": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/_empty_"
+                            "$ref": "#/components/schemas/InvResponse"
                         }
                     }
                 }
