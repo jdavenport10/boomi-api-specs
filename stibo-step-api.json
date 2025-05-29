@@ -3038,7 +3038,6 @@
                 "properties": {
                   "body": {
                     "title": "body",
-                    "type": "file",
                     "format": "binary"
                   }
                 },
@@ -13880,7 +13879,6 @@
                 "properties": {
                   "body": {
                     "title": "body",
-                    "type": "file",
                     "format": "binary"
                   }
                 },
